@@ -8,7 +8,8 @@ RUN apt-get install -y supervisor swift python-swiftclient rsync \
                        python-xattr python-memcache \
                        swift-account swift-container swift-object pwgen python-pip
 #RUN pip install setuptool
-RUN python swift_api/stacksync_api_library/setup.py install
+ADD swift_api /tmp/  
+RUN cd /tmp/swift_api/stacksync_api_library && python /tmp/swift_api/stacksync_api_library/setup.py install
 RUN mkdir -p /var/log/supervisor
 ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
