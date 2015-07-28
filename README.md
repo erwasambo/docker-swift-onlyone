@@ -69,7 +69,7 @@ CONTAINER ID        IMAGE                         COMMAND                CREATED
 We can now use the swift python client to access Swift using the Docker forwarded port, in this example port 12345.
 
 ```bash
-vagrant@host1:~$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing stat
+swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing stat
        Account: AUTH_test
     Containers: 0
        Objects: 0
@@ -78,13 +78,31 @@ vagrant@host1:~$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K tes
    X-Timestamp: 1402463864.77057
     X-Trans-Id: tx4e7861ebab8244c09dad9-005397e678
 X-Put-Timestamp: 1402463864.77057
+
+or for Version 2.0
+
+$swift -V 2.0 -A http://162.244.27.80:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat
+IN_PASS stat
+   Account: AUTH_939ba777082a4f988d5b70dc886459e3
+Containers: 0
+   Objects: 0
+     Bytes: 0
+Content-Type: text/plain; charset=utf-8
+X-Timestamp: 1389435011.63658
+X-Put-Timestamp: 1389435011.63658
+
 ```
 
 Try uploading a file:
 
 ```bash
-vagrant@host1:~$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing upload swift swift.txt
+$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing upload swift swift.txt
 swift.txt
+
+or for Version 2.0
+
+$ swift -V 2.0 -A http://127.0.0.1:5000/v2.0 -U admin -K pass upload myfiles abc.txt 
+
 ```
 
 That's it!
