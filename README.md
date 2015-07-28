@@ -81,9 +81,8 @@ X-Put-Timestamp: 1402463864.77057
 
 or for Version 2.0
 
-$ swift -V 2.0 -A http://162.244.27.80:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat
-IN_PASS stat
-   Account: AUTH_939ba777082a4f988d5b70dc886459e3
+$ swift -V 2.0 -A http://162.244.27.80:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat --os-tenant-name=stacksync
+   Account:       Account: v2.0
 Containers: 0
    Objects: 0
      Bytes: 0
@@ -91,6 +90,9 @@ Content-Type: text/plain; charset=utf-8
 X-Timestamp: 1389435011.63658
 X-Put-Timestamp: 1389435011.63658
 
+or 
+
+swift --debug --os-auth-url=http://162.244.27.80:5000/v2.0 --os-username=stacksync_admin --os-password=stacksync_admin_pass --os-tenant-name=stacksync stat
 ```
 
 Try uploading a file:
