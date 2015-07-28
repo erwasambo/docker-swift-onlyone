@@ -19,19 +19,19 @@ I suggest using the data container methodology.
 So first we create a data only container for /srv.
 
 ```bash
-vagrant@host1:~$ docker run -v /srv --name SWIFT_DATA busybox
+$ docker run -v /srv --name SWIFT_DATA busybox
 ```
 
 Now that we have a data container, we can use the "--volumes-from" option when creating the "onlyone" container. Note that in this case I've called the image built from this docker file "curtis/swift-onlyone".
 
 ```bash
-vagrant@host1:~$ ID=$(docker run -d -p 12345:8080 --volumes-from SWIFT_DATA -t curtis/swift-onlyone)
+$ ID=$(docker run -d -p 12345:8080 --volumes-from SWIFT_DATA -t curtis/swift-onlyone)
 ```
 
 With that container running we can now check the logs.
 
 ```bash
-vagrant@host1:~$ docker logs $ID
+$ docker logs $ID
 Device d0r1z1-127.0.0.1:6010R127.0.0.1:6010/sdb1_"" with 1.0 weight got id 0
 Reassigned 128 (100.00%) partitions. Balance is now 0.00.
 Device d0r1z1-127.0.0.1:6011R127.0.0.1:6011/sdb1_"" with 1.0 weight got id 0
@@ -61,7 +61,7 @@ Starting to tail /var/log/syslog...(hit ctrl-c if you are starting the container
 At this point OpenStack Swift is running.
 
 ```bash
-vagrant@host1:~$ docker ps
+$ docker ps
 CONTAINER ID        IMAGE                         COMMAND                CREATED             STATUS              PORTS                     NAMES
 4941f8cd8b48        curtis/swift-onlyone:latest   /bin/sh -c /usr/loca   58 seconds ago      Up 57 seconds       0.0.0.0:12345->8080/tcp   hopeful_brattain
 ```
@@ -69,7 +69,7 @@ CONTAINER ID        IMAGE                         COMMAND                CREATED
 We can now use the swift python client to access Swift using the Docker forwarded port, in this example port 12345.
 
 ```bash
-swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing stat
+$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing stat
        Account: AUTH_test
     Containers: 0
        Objects: 0
@@ -81,7 +81,7 @@ X-Put-Timestamp: 1402463864.77057
 
 or for Version 2.0
 
-$swift -V 2.0 -A http://162.244.27.80:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat
+$ swift -V 2.0 -A http://162.244.27.80:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat
 IN_PASS stat
    Account: AUTH_939ba777082a4f988d5b70dc886459e3
 Containers: 0
