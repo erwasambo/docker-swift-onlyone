@@ -9,8 +9,7 @@ RUN apt-get install -y supervisor swift python-swiftclient rsync \
                        swift-account swift-container swift-object pwgen python-pip git-core
 #RUN pip install setuptool
 ADD swift_api /tmp/
-RUN git clone https://github.com/stackforge/swift3.git /tmp/
-RUN ls -la /tmp
+RUN cd /tmp/ && git clone https://github.com/stackforge/swift3.git && ls -la
 RUN cd /tmp/swift3 && python setup.py install
 RUN cd /tmp/stacksync_api_library && python setup.py install
 RUN cd /tmp/stacksync_api_swift && python setup.py install
