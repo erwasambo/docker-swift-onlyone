@@ -8,8 +8,10 @@ RUN apt-get install -y supervisor swift python-swiftclient rsync \
                        python-xattr python-memcache \
                        swift-account swift-container swift-object pwgen python-pip
 #RUN pip install setuptool
-ADD swift_api /tmp/  
+ADD swift_api /tmp/
+RUN git clone https://github.com/stackforge/swift3.git /tmp/
 RUN ls -la /tmp
+RUN cd /tmp/swift3 && python setup.py install
 RUN cd /tmp/stacksync_api_library && python setup.py install
 RUN cd /tmp/stacksync_api_swift && python setup.py install
 RUN mkdir -p /var/log/supervisor
