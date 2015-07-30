@@ -10,7 +10,8 @@ RUN apt-get install -y supervisor swift python-swiftclient rsync \
 #RUN pip install setuptool
 ADD swift_api /tmp/  
 RUN ls -la /tmp
-RUN cd /tmp/stacksync_api_library && python setup.py install
+#RUN cd /tmp/stacksync_api_library && python setup.py install
+RUN cd /tmp/stacksync_api_swift && python setup.py install
 RUN mkdir -p /var/log/supervisor
 ADD files/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
