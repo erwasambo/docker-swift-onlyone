@@ -25,7 +25,7 @@ $ docker run -v /srv --name SWIFT_DATA busybox
 Now that we have a data container, we can use the "--volumes-from" option when creating the "onlyone" container. Note that in this case I've called the image built from this docker file "curtis/swift-onlyone".
 
 ```bash
-$ ID=$(docker run -d -p 12345:8080 --volumes-from SWIFT_DATA -t curtis/swift-onlyone)
+$ ID=$(docker run -d -p 12345:8080 --volumes-from SWIFT_DATA -t erwasambo/docker-swift-onlyone)
 ```
 
 With that container running we can now check the logs.
