@@ -69,7 +69,7 @@ CONTAINER ID        IMAGE                         COMMAND                CREATED
 We can now use the swift python client to access Swift using the Docker forwarded port, in this example port 12345.
 
 ```bash
-$ swift -A http://167.88.36.138:12345/auth/v1.0 -U test:tester -K testing stat
+$ swift -A http://104.233.76.91:12345/auth/v1.0 -U test:tester -K testing stat
        Account: AUTH_test
     Containers: 0
        Objects: 0
@@ -81,7 +81,7 @@ X-Put-Timestamp: 1402463864.77057
 
 or for Version 2.0
 
-$ swift -V 2.0 -A http://167.88.36.138:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat --os-tenant-name=stacksync
+$ swift -V 2.0 -A http://104.233.76.91:5000/v2.0 -U stacksync_admin -K stacksync_admin_pass stat --os-tenant-name=stacksync
    Account:       Account: v2.0
 Containers: 0
    Objects: 0
@@ -92,18 +92,18 @@ X-Put-Timestamp: 1389435011.63658
 
 or 
 
-swift --debug --os-auth-url=http://167.88.36.138:5000/v2.0 --os-username=stacksync_admin --os-password=stacksync_admin_pass --os-tenant-name=stacksync stat
+swift --debug --os-auth-url=http://104.233.76.91:5000/v2.0 --os-username=stacksync_admin --os-password=stacksync_admin_pass --os-tenant-name=stacksync stat
 ```
 
 Try uploading a file:
 
 ```bash
-$ swift -A http://127.0.0.1:12345/auth/v1.0 -U test:tester -K testing upload swift swift.txt
+$ swift -A http://104.233.76.91:12345/auth/v1.0 -U test:tester -K testing upload swift swift.txt
 swift.txt
 
 or for Version 2.0
 
-$ swift -V 2.0 -A http://167.88.36.138:5000/v2.0 -U admin -K pass upload myfiles abc.txt 
+$ swift -V 2.0 -A http://104.233.76.91:5000/v2.0 -U admin -K pass upload myfiles abc.txt 
 
 ```
 
